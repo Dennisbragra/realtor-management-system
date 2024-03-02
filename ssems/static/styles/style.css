@@ -1,0 +1,125 @@
+
+
+a{
+	text-decoration: none;
+}
+
+li{
+	list-style-type: none;
+}
+
+
+.maincard{
+	height: 150px;
+	width: 150px;
+	margin: 5px 5px 5px 5px;
+	text-align: center;
+}
+
+#maincards{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#noticeboard{
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+#activityfeed{
+	border-style: groove;
+	border-radius: 5px ;
+	margin-left: 50px;
+}
+#noticeheader{
+	text-align: center;
+}
+
+#activityfeedheader{
+	text-align: center;
+}
+
+#activityfeedtopics{
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+#viewtopiccard{
+	width: 300px;
+}
+
+#reviewbody{
+	width: 800px;
+	border-style: groove;
+	border-radius: 5px ;
+	margin-left: 300px;
+}
+
+#maintenanceform{
+	margin-top: 2px;
+}
+
+#loginform{
+	width: 350px;
+	height: 250px;
+	background-color: grey;
+	top: 50%;
+	left: 50%;
+	margin-top: 100px;
+	margin-left: 500px;
+	margin-bottom: 100px;
+}
+
+.logindetails{
+	text-align: center;
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+
+#loginbtns{
+	text-align: center;
+
+}
+#loginheader{
+	text-align: center;
+}
+
+#loginregister{
+	text-align: center;
+}
+#submitbtn{
+	margin-bottom: 30px;
+}
+
+#registerformheader{
+	text-align: center;
+	margin-top: 20px;
+}
+#registerform{
+	width: 350px;
+	height: 300px;
+	background-color: grey;
+}
+
+.registerbtns{
+	text-align: center;
+	padding-top: 20px;
+	margin-top: 10px;
+}
+
+#houseupdateform{
+	width: 400px;
+}
+
+#updatehsebtn{
+	text-align: center;
+	padding-top: 10px;
+}
+
+.updaterepairsfields {
+	padding: 5px 0px 10px 5px;
+}
+
+.nav-item{
+	padding-right: 5px;
+}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main>
+		<div class="container-fluid">
+			<div><h3>Add a notice</h3></div>
+
+			<form method="POST" action="">{% csrf_token %}
+				
+				{{ form.as_p }}
+				<input type="submit" value="Add Notice">
+			</form>
+			
+		</div>
+
+
+	</main>				
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{%block content%}
+	<main>
+		<div class="container-fluid">
+			<div class="row" id="houseupdateform">
+				 <div class="col">
+				 	<div class="card">
+				 		<div class="card-header">Update House Details</div>
+				 		<div class="card-body">
+						<form action="" method="POST">{% csrf_token %}
+							<table>
+								{% for field in form %}
+								<tr>
+									<td><label>{{ field.label }}</label></td>
+									<td> {{ field }}</td>
+								</tr>	
+								{% endfor %}		
+							</table>
+			 					<div id="updatehsebtn"><input type="submit" name="submit" value="Update"></div>
+			 				</form>	
+				 		</div>
+				 	</div>
+				 </div>
+			</div>
+		</div>
+	</main>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+	<h2>Requests</h2>
+
+	<div>
+		{% for houserequest in houserequests %}
+		<ul>
+			<li><a href="{% url 'approverequest' houserequest.id %}"> A {{ houserequest.house.bedrooms }} bedroomed {{houserequest.house.housetype|title}} </a></li>
+			{% if houserequest.house.block %}
+			<li> {{ houserequest.house.block }} </li>
+			{% else %}
+			{{ houserequest.house.housetype|title }}
+			{% endif %}
+			<li>Requested by: {{ houserequest.user|title }} </li>
+		</ul>
+
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endblock %}

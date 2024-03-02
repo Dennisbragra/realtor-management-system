@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+	<h2>Approve requests</h2>
+	<div>
+		<ul>
+			<li>A {{ houserequest.house.bedrooms }} bedroomed {{houserequest.house.housetype|title}} </li>
+			{% if houserequest.house.block %}
+			<li> {{ houserequest.house.block }} </li>
+			{% else %}
+			{{ houserequest.house.housetype|title }}
+			{% endif %}
+			<li>Requested by: {{ houserequest.user|title }} </li>
+			<form method="POST" action="">{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" value="Approve">	
+				
+			</form>
+			
+		</ul>		
+	</div>
+</div>
+
+
+
+
+
+{% endblock %}

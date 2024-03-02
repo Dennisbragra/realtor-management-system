@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<main>
+		{% if page == 'login' %}
+		<div class="container-fluid">
+			<form method="POST" action=""  id="loginform">{% csrf_token %}
+				<div id="loginheader">
+					<h3>Log In</h3>
+				</div>				
+			 	<table>
+			 		<tr>
+			 			<td class="logindetails"><label>Username</label></td>
+			 			<td class="logindetails"><input type="text" name="username"></td>
+			 		</tr>
+			 		<tr>
+			 			<td class="logindetails"><label>Password</label></td>
+			 			<td class="logindetails"><input type="password" name="password"></td>
+			 		</tr>			 		
+			 	</table>
+			 	<div class="row" id="loginbtns">
+			 		<div id="submitbtn">
+			 			<input type="submit" value="Login">
+			 		</div>
+			 		<div class="">
+			 			Not yet Registered? <a href="{% url 'register' %}">Register</a>
+			 		</div>
+			 	</div>
+			</form>
+		</div>
+		{% else %}
+		{% load static %}
+		<div class="container-fluid" id="registerform">
+			<div>
+				<div id="registerformheader"><h2>Register</h2></div>
+				<form method="POST" action="">{% csrf_token %}
+					<table>
+						{% for field in form %}
+						<tr>
+							<td><label>{{ field.label }} </label> </td>
+							<td> {{ field }} </td>
+						</tr>
+						{% endfor %}
+					</table>
+					<div class="registerbtns">
+						<input type="submit" value="Register">
+					</div>
+					<div class="registerbtns">
+						Already Registered? <a href="{% url 'login' %}">Login</a>
+					</div>		
+				</form>
+			</div>	
+		</div>
+
+
+
+		{% endif %}
+	</main>
+
+
+
+{% endblock %}

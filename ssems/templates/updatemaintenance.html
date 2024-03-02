@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main>
+		<div class="container-fluid">
+			<div class="card" style="width: 320px;">
+				<div class="card-header"><h2 style="text-align: center;">Update Repairs</h2></div>
+				<div class="card-body">
+					<form method="POST" action="">{% csrf_token %}
+						<table>
+							{% for field in form %}
+								<tr>
+									<td class="updaterepairsfields"><label>{{ field.label }} </label></td>
+									<td class="updaterepairsfields">{{ field }} </td>
+								</tr>				
+							{% endfor %}	
+						</table>
+						<div style="text-align: center;">
+							<input type="submit" name="Update" value="Update">
+						</div>	
+					</form>
+				</div>	
+			</div>
+		</div>
+
+		
+
+	</main>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main>
+		{% load static %}
+		{% if request.user.is_superuser %}
+		<div class="container-fluid" id="maincards" style="width: 800px;">
+			<div class="d-flex justify-content-between">
+				<a href="">
+					<div class="card maincard">
+						<img src="{% static 'images/people.svg'%}" style="height: 120px;" />
+						About Us
+					</div></a>
+				<a href="{% url 'requestedunits' %}">
+					<div class="card maincard pt-2">
+						<img src="{% static 'images/phone.svg'%}" style="height: 100px; margin-bottom: 15px;" />
+						Request
+					</div>
+				</a>									
+				<a href="{% url 'houses' %}">
+					<div class="card maincard">
+							<img src="{% static 'images/house.jpg'%}" style="height: 100px; width: 100px; margin-bottom: 15px;" />
+						Units
+					</div>
+				</a>					
+								
+			</div>
+			<div class="d-flex justify-content-between" >
+				<a href="{% url 'rentarrears'%}">
+					<div class="card maincard">
+						Rent 
+					</div></a>				
+				<a href="{% url 'maintenance-requests'%}">
+					<div class="card maincard pt-2">
+						<img src="{% static 'images/wrench-adjustable.svg'%}" style="height: 100px;margin-bottom: 15px;" />
+						Maintenance
+					</div></a>						
+				<a href="{% url 'noticeboard' %}">
+					<div class="card maincard">
+						Notice Board
+					</div></a>				
+			</div>			
+		</div>
+		{% else %}
+			{% for house in houses %}
+				
+					<div class="container-fluid" id="maincards" style="width: 800px;">			
+						<div class="d-flex justify-content-between">
+							<div class="col maincard" id="usercard" style="text-align: left;">
+								<div>Welcome {{ request.user|title }} </div>
+								Block: {{ house.block|title }}<br>
+								House Number: {{ house.housenumber }}<br>
+								Rent: {{ house.rent }}
+							</div>				
+							<a href="{% url 'houses' %}">
+								<div class="card maincard">
+									Units
+								</div>
+							</a>	 			
+							<a href="{% url 'maintenance' house.id %}">
+								<div class="col maincard">
+									Request for Maintainence
+								</div>
+							</a>
+						</div>
+					</div>		
+											
+				
+			{% endfor%}
+
+
+		{% endif %}
+
+	<div class="container-fluid">
+		<div class="col">
+			<div class="card">
+				<div class="card-header">Notices</div>
+				<div class="card-body">
+					{% for topic in topics %}
+					 <ul>
+					 	<li><a href="{% url 'viewtopic' topic.id %}">{{ topic.name|title }}</a></li>
+					 	{{ topic.created|timesince }}
+					 </ul>	
+					{% endfor %}
+					<div class=""><a href="{% url 'noticeboard' %}">...see more</a> </div>
+				</div>
+				
+			</div>						
+		</div>
+
+
+
+		<div class="col">
+			<div class="card mt-3">
+				<div class="card-header">Reviews</div>
+				<div class="card-body">
+					{% for review in reviews %}
+						@{{ review.host}} <br>
+						{{ review.body }}<br>
+						{{ review.created|timesince }}<hr>
+
+					{% endfor %}
+					<p>
+						<a href="{% url 'reviews'%}">see more reviews</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+	</div>
+
+
+
+	</main>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="card"  id="viewtopiccard">
+			<div class="card-body">
+				<div class="">{{ topic.name }}</div>
+				<div class="card">
+					{% for message in messages %}
+						@{{ message.tenant }}<br>
+						{{ message.message}}<br>
+						{{ message.created|timesince }}<br><br>
+					{% endfor %}
+				</div>
+				<div>
+					<form method="POST" action="">{% csrf_token %}
+						<table>
+							<tr>
+								<td><input type="text" name="body" placeholder="Enter your feedback....." > </td>
+							</tr>
+						</table>
+					</form>
+				</div>					
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+{% endblock %}

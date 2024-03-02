@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main>
+		<div class="col">
+			<div class="row">
+				<div class="header" style="text-align: center;"><h2>Units</h2></div>
+				<div>
+					<a href="{% url 'addunit' %}">Add Unit</a>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+					{% for house in houses %}
+					<div class="col">
+						{% if request.user.is_superuser %}	
+						<a href="{% url 'viewunit' house.id %}">A {{ house.bedrooms|title }} Bedroom {{ house.housetype|title }}</a> <br>
+						{% else %}
+
+						<a href="{% url 'viewunit' house.id %}">A {{ house.bedrooms|title }} Bedroom {{ house.housetype|title }}</a> <br>
+
+						{%  endif %}
+
+						{% if house.block %}
+						Block: {{ house.block|title }}<br>
+						{% else %}
+						{{ house.housetype|title }}<br>
+						{% endif %}
+						House number: {{ house.housenumber }}<br>
+						{% if house.rented == True %}
+						Rented by: {{ house.tenant|title }}<br>
+						{% endif %}
+							
+						Rent: {{ house.rent }}
+						<div>
+							{% if request.user.is_superuser %}
+								Rent paid: {{ house.rentpaid}} <br>
+								<div>
+									<a href="{% url 'updateunit' house.id %}">Edit</a><br>
+								</div>
+							{% endif %}
+						</div>
+
+						<!-- user request for a house -->
+	
+						
+
+
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>		
+	</main>
+{% endblock %}

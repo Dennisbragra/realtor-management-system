@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main style="margin-bottom: 400px;">
+
+		<div class="container-fluid">
+			<div>
+				<h2 style="text-align: center;">Repair request</h2>
+				<div class="container-fluid mt-3">
+					<div class="row">
+					<table>
+						<tr>
+							<th>Time requested</th>
+				 			<th>Nature of repair </th>
+				 			<th>Status</th>
+				 		</tr>
+				 	
+				 			{% for maintenance in maintenances %}
+				 			<tr>
+				 				<td>{{maintenance.created}}</td>
+				 				<td>{{ maintenance.natureofrepair }}</td>
+				 				{% if maintenance.repaired %}
+				 				<td>Completed</td>
+				 				{% else %}
+				 				<td>Pending</td>
+				 				{% endif %}
+				 			</tr>	
+				 			{% endfor%}
+					</table>
+					</div>
+				</div>
+			</div>	 	
+
+			<div class="form" id="maintenanceform">
+				<form method="POST" action="">{% csrf_token %}
+					<input type="text" name="body" placeholder="Enter repair.....">
+				</form>
+			</div>
+		</div>
+	</main>
+
+
+{% endblock %}

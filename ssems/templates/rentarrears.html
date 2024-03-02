@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% block content %}
+	<main>
+		<div class="container-fluid">
+			<h3 style="text-align: center;">Rent Arrears</h3>
+		</div>
+		<div class="container-fluid">
+			<div class="row" style="padding-left: 5px;">
+				<table>
+					<tr>
+						<th>Name of tenant</th>
+						<th>House number</th>
+						<th>Block</th>
+						<th>Rent </th>
+						<th>Rent Paid</th>
+						<!-- <th>Rent Due</th> -->
+					</tr>
+					
+						{% for house in houses%}
+						{% if house.tenant %}
+					<tr>
+					
+						<td>{{ house.tenant|title }}</td>
+						<td>{{ house.housenumber }}</td>
+						{% if house.block == None %}
+							<td>{{ house.housetype|title }}</td>
+						{% else %}
+							<td>{{ house.block|title }}</td>
+						{% endif %}		
+						<td>{{ house.rent }}</td>
+						<td>{{ house.rentpaid}}</td>
+							
+						<!-- <td>{{ rentdue }}</td> -->
+						
+					</tr>
+						{% endif %}
+						{% endfor %}
+				</table>
+				<!-- {{rentdue.house.tenant}} -->
+			</div>	
+		</div>
+	</main>
+
+
+{% endblock %}

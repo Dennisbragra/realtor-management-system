@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main>
+		<div class="container-fluid mt-5">
+			<h1 style="text-align: center;">Maintenance requests</h1>
+		
+			<div class="row mt-5">
+				<table>
+					<tr>
+					
+						<th>Time requested</th>
+						<th>Tenant</th>
+						<th>Block</th>
+						<th>House number</th>
+						<th>Nature of repair </th>
+						<th>Status</th>
+					</tr>
+					{% for maintenance in maintenances %}
+					<tr>
+
+						<td>{{ maintenance.created }}</td>
+						<td>{{ maintenance.house.tenant|title }}</td>
+						{% if maintenance.house.block == None %}
+							<td>{{ maintenance.house.housetype|title }} </td>
+						{% else %}	
+							<td>{{ maintenance.house.block|title }}</td>
+						{% endif %}
+						<td>{{ maintenance.house.housenumber }}</td>
+						<td><a href="{% url 'repairupdates' maintenance.id %}">
+						{{ maintenance.natureofrepair|title }}</a></td>
+						{% if maintenance.repaired %}
+						<td>Completed</td>
+						{%else%}
+						<td>Pending</td>
+						{% endif %}
+					</tr>
+					{% endfor %}	
+				</table>
+			</div>
+			
+		</div>
+
+	</main>
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main>
+		<div class="container-fluid">
+			<div class="h3" id="noticeboard">Notice Board</div>
+			<div class="row">
+				<div class="col-8">
+					<div id="activityfeedheader"><h3>Activity Feed</h3> </div>
+					<div id="activityfeed">
+						{% for message in messages %}
+							<p id="activityfeedtopics">
+								{{ message.topic|title}}<br>
+								@{{ message.tenant}}<br>
+								{{ message.message }}<br>
+								{{ message.created|timesince }}
+							</p>
+							
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col">
+					<div class="h4" id="noticeheader">Notices </div>
+					{% if request.user.is_superuser %}
+					<div><a href="{% url 'addnotice' %}">Add a notice</a></div>
+					{% endif %}
+					{% for topic in topics %}
+						<ul>
+							<li><a href="{% url 'viewtopic' topic.id %}">{{ topic.name|title }}</a></li>
+							{{ topic.created|timesince }}
+						</ul>
+					{% endfor %}					
+				</div>							
+
+			</div>	
+			
+		</div>
+
+
+
+
+
+	</main>
+
+
+{% endblock %}

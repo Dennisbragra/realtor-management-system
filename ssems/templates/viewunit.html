@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="card">
+			<!-- <div class="card-title"></div> -->
+			<div class="card-body">
+				 <ul>
+				 	{% if house.block %}
+				 	<li>Block: {{ house.block|title }} </li>
+				 	{% else %}
+				 	<li>{{ house.housetype|title }} </li>
+				 	{% endif %}
+				 	<li>House Number: {{ house.housenumber }} </li>
+				 	<li>Rented by: {{ house.tenant|title }} </li>
+				 	<li>Rent: {{ house.rent }} </li>
+				 	<li>Rent Paid: {{ house.rentpaid }} </li>
+				 	<li>Rent due: {{ rentdue }} </li>
+				 </ul>
+				 <div>
+				 	<h2>Repair request</h2>
+				 	<div class="row">
+				 		<table>
+				 			<tr>
+				 				<th>Time requested</th>
+				 				<th>Nature of repair </th>
+				 				<th>Status</th>
+				 			</tr>
+				 		
+
+				 			{% for maintenance in maintenances %}
+				 			<tr>
+				 				<td>{{maintenance.created}}</td>
+				 				<td>{{ maintenance.natureofrepair }}</td>
+				 				{% if maintenance.repaired %}
+				 				<td>Completed</td>
+				 				{% else %}
+				 				<td>Pending</td>
+				 				{% endif %}
+				 			</tr>	
+				 			{% endfor%}
+				 		</table>
+				 	</div>	
+
+				 </div>
+
+				 <div>
+				 	
+
+				 	{% if house.tenant %}
+				 		<p>This House is rented out </p>
+				 	{% else %}
+				 		<a href="{% url 'requestunit' house.id %}">Request unit</a>
+				 	{% endif %}
+
+
+				 </div>
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+{% endblock %}
